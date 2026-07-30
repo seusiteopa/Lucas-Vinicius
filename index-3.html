@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucas Vinicius | DJ Profissional</title>
+<meta name="description" content="Lucas Vinicius — DJ profissional para casamentos, aniversários, formaturas e eventos corporativos. Som, iluminação e experiência.">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#08080B;
+    --surface:#101014;
+    --surface-2:#161620;
+    --blue:#00C2FF;
+    --pink:#FF3DBB;
+    --white:#F4F5F8;
+    --muted:#8D91A0;
+    --border:rgba(255,255,255,0.08);
+  }
+  *{ box-sizing:border-box; }
+  ::selection{ background:var(--blue); color:#000; }
+
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display-font{ font-family:'Syne', sans-serif; }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--blue);
+  }
+
+  .bg-fx{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(50% 40% at 20% 0%, rgba(0,194,255,0.18), transparent 60%),
+      radial-gradient(45% 35% at 85% 10%, rgba(255,61,187,0.14), transparent 60%),
+      linear-gradient(var(--bg), var(--bg));
+  }
+  .beam{
+    position:absolute; top:-10%; width:2px; height:120%;
+    background:linear-gradient(to bottom, transparent, rgba(0,194,255,0.5), transparent);
+    filter:blur(1px);
+    animation:sway 7s ease-in-out infinite;
+    transform-origin:top;
+  }
+  @keyframes sway{
+    0%,100%{ transform:rotate(-6deg); opacity:0.3; }
+    50%{ transform:rotate(6deg); opacity:0.7; }
+  }
+
+  section{ position:relative; z-index:1; }
+
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:5rem 1.5rem 3rem;
+  }
+
+  .photo-wrap{ position:relative; width:230px; height:230px; margin-bottom:2rem; }
+
+  .photo-glow{
+    position:absolute; inset:-55px; border-radius:50%;
+    background:radial-gradient(circle, rgba(0,194,255,0.4), rgba(255,61,187,0.12) 55%, transparent 75%);
+    filter:blur(8px);
+    animation:pulse 3.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:0.55; transform:scale(1); }
+    50%{ opacity:0.95; transform:scale(1.07); }
+  }
+
+  .photo-frame{
+    position:relative; width:100%; height:100%; border-radius:50%;
+    padding:4px; background:conic-gradient(from 0deg, var(--blue), var(--pink), var(--blue));
+    animation:spin 10s linear infinite; z-index:2;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .photo-frame img{
+    width:100%; height:100%; object-fit:cover; border-radius:50%;
+    border:4px solid var(--bg); display:block;
+    animation:counterspin 10s linear infinite;
+  }
+  @keyframes counterspin{ to{ transform:rotate(-360deg); } }
+
+  .hero h1{
+    font-size:clamp(2rem, 5.5vw, 3.1rem);
+    font-weight:800; letter-spacing:0.01em; margin-bottom:0.5rem;
+  }
+  .hero .role-line{ color:var(--muted); font-size:0.95rem; margin-bottom:1.4rem; letter-spacing:0.04em; }
+  .hero .role-line .dot{ color:var(--blue); margin:0 0.4rem; }
+
+  .hero p.tagline{
+    max-width:540px; color:#C7CAD4; font-size:1.02rem; line-height:1.7; margin-bottom:2.3rem;
+  }
+
+  .btn-neon{
+    background:linear-gradient(135deg, var(--blue), #0091C7);
+    border:none; color:#00131A; font-weight:700;
+    padding:0.95rem 2.3rem; border-radius:50px;
+    box-shadow:0 0 26px rgba(0,194,255,0.5);
+    transition:all 0.3s ease;
+    text-decoration:none; display:inline-block;
+  }
+  .btn-neon:hover{ transform:translateY(-2px); box-shadow:0 0 38px rgba(0,194,255,0.75); color:#00131A; }
+
+  .btn-neon-outline{
+    border:1px solid var(--blue); color:var(--blue);
+    padding:0.9rem 2rem; border-radius:50px; font-weight:600;
+    text-decoration:none; display:inline-block; transition:all 0.3s ease; margin-left:0.8rem;
+  }
+  .btn-neon-outline:hover{ background:rgba(0,194,255,0.1); color:var(--blue); }
+
+  .glass-card{
+    background:rgba(255,255,255,0.035);
+    border:1px solid var(--border);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-radius:20px; padding:1.8rem 1.6rem; height:100%;
+    transition:transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .glass-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(0,194,255,0.5);
+    box-shadow:0 12px 40px rgba(0,194,255,0.14);
+  }
+  .glass-icon{
+    width:56px; height:56px; display:flex; align-items:center; justify-content:center;
+    border-radius:14px; background:rgba(0,194,255,0.1); color:var(--blue);
+    font-size:1.4rem; margin-bottom:1.1rem;
+  }
+  .glass-card h3{ font-size:1.1rem; margin-bottom:0.4rem; }
+  .glass-card p{ color:var(--muted); font-size:0.9rem; margin-bottom:1.2rem; }
+  .link-cta{
+    color:var(--blue); font-weight:600; font-size:0.9rem; text-decoration:none;
+    display:inline-flex; align-items:center; gap:0.4rem;
+  }
+  .link-cta i{ transition:transform 0.25s ease; }
+  .link-cta:hover i{ transform:translateX(4px); }
+  .link-cta:hover{ color:#5CDCFF; }
+
+  .section-title{ font-size:clamp(1.5rem, 4vw, 2.1rem); font-weight:700; margin-bottom:0.8rem; }
+  .section-sub{ color:var(--muted); max-width:560px; }
+
+  .diff-item{
+    display:flex; align-items:center; gap:0.9rem; padding:0.9rem 0;
+    border-bottom:1px solid var(--border);
+  }
+  .diff-item:last-child{ border-bottom:none; }
+  .diff-icon{ color:var(--blue); font-size:1.1rem; width:26px; text-align:center; }
+
+  .gallery-item{
+    border-radius:16px; overflow:hidden; border:1px solid var(--border);
+    aspect-ratio:1/1; background:var(--surface);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted); font-size:1.6rem;
+    position:relative;
+  }
+  .gallery-item::after{
+    content:"+"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(0,194,255,0.08); opacity:0; transition:opacity 0.3s ease; color:var(--blue); font-size:2rem;
+  }
+  .gallery-item:hover::after{ opacity:1; }
+
+  .testimonial-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:18px;
+    padding:1.8rem; height:100%;
+  }
+  .testimonial-card i.fa-quote-left{ color:var(--blue); font-size:1.3rem; opacity:0.6; margin-bottom:0.8rem; }
+  .testimonial-card p{ color:#D6D8E0; font-size:0.95rem; line-height:1.6; margin-bottom:1rem; }
+  .testimonial-name{ font-weight:600; font-size:0.9rem; }
+  .testimonial-role{ color:var(--muted); font-size:0.8rem; }
+  .stars{ color:#FFC94D; font-size:0.85rem; margin-bottom:0.6rem; }
+
+  .cta-final{
+    text-align:center; padding:5rem 1.5rem;
+    background:radial-gradient(60% 80% at 50% 50%, rgba(0,194,255,0.1), transparent 70%);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .cta-final h2{ font-size:clamp(1.6rem, 5vw, 2.5rem); margin-bottom:1.6rem; max-width:640px; margin-left:auto; margin-right:auto; }
+
+  footer{
+    text-align:center; padding:2.8rem 1rem 2rem; color:var(--muted); font-size:0.85rem;
+  }
+  footer .footer-links{ margin-bottom:1rem; }
+  footer .footer-links a{
+    color:var(--white); text-decoration:none; margin:0 0.7rem; font-size:1.2rem; transition:color 0.25s ease;
+  }
+  footer .footer-links a:hover{ color:var(--blue); }
+  footer .footer-name{ font-family:'Syne', sans-serif; font-weight:700; color:var(--white); margin-bottom:0.3rem; }
+
+  @media (prefers-reduced-motion: reduce){
+    .photo-frame, .photo-frame img, .photo-glow, .beam{ animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-fx"></div>
+<div class="beam" style="left:15%; animation-delay:0s;"></div>
+<div class="beam" style="left:45%; animation-delay:2s;"></div>
+<div class="beam" style="left:75%; animation-delay:1s;"></div>
+
+<section class="hero">
+  <div class="photo-wrap" data-aos="zoom-in" data-aos-duration="900">
+    <div class="photo-glow"></div>
+    <div class="photo-frame">
+      <img src="lucas-foto.png" alt="DJ Lucas Vinicius">
+    </div>
+  </div>
+
+  <h1 data-aos="fade-up" data-aos-delay="100">LUCAS VINICIUS</h1>
+  <div class="role-line" data-aos="fade-up" data-aos-delay="200">
+    DJ Profissional <span class="dot">•</span> Eventos <span class="dot">•</span> Música Eletrônica
+  </div>
+  <p class="tagline" data-aos="fade-up" data-aos-delay="300">
+    Olá! Sou Lucas Vinicius, apaixonado por música e por criar experiências inesquecíveis.
+    Atuo em casamentos, aniversários, formaturas, eventos corporativos, festas particulares e
+    grandes celebrações. Meu objetivo é transformar cada evento em um momento único através
+    da música, da energia e da conexão com o público.
+  </p>
+  <div data-aos="fade-up" data-aos-delay="400">
+    <a href="https://wa.me/5519992443057" target="_blank" class="btn-neon">🎧 Solicitar Orçamento</a>
+    <a href="#agenda" class="btn-neon-outline">Ver Agenda</a>
+  </div>
+</section>
+
+<section class="container py-5" id="agenda">
+  <div class="row g-4">
+
+    <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up">
+      <div class="glass-card">
+        <div class="glass-icon"><i class="fa-solid fa-headphones"></i></div>
+        <h3>Agenda de Shows</h3>
+        <p>Confira as próximas datas e eventos confirmados.</p>
+        <a href="#" class="link-cta">Ver Agenda <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="glass-card">
+        <div class="glass-icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <h3>Solicitar Orçamento</h3>
+        <p>Conte sobre seu evento e receba uma proposta.</p>
+        <a href="https://wa.me/5519992443057" target="_blank" class="link-cta">Pedir Orçamento <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up">
+      <div class="glass-card">
+        <div class="glass-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <h3>WhatsApp</h3>
+        <p>Fale direto comigo para tirar dúvidas.</p>
+        <a href="https://wa.me/5519992443057" target="_blank" class="link-cta">Enviar Mensagem <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="glass-card">
+        <div class="glass-icon"><i class="fa-brands fa-instagram"></i></div>
+        <h3>Instagram</h3>
+        <p>Bastidores, sets e novidades dos eventos.</p>
+        <a href="https://www.instagram.com/viniciusr4sta_?igsh=MW1obGI5N2dqMDQydw==" target="_blank" class="link-cta">Seguir Perfil <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up">
+      <div class="glass-card">
+        <div class="glass-icon"><i class="fa-brands fa-youtube"></i></div>
+        <h3>YouTube</h3>
+        <p>Vídeos de sets e apresentações ao vivo.</p>
+        <a href="#" class="link-cta">Assistir Agora <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="glass-card">
+        <div class="glass-icon"><i class="fa-solid fa-music"></i></div>
+        <h3>Ouça meu Set</h3>
+        <p>Uma seleção de mixagens para curtir agora.</p>
+        <a href="#" class="link-cta">Ouvir Set <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="row align-items-center g-5">
+    <div class="col-12 col-lg-5" data-aos="fade-right">
+      <p class="eyebrow mb-2">DIFERENCIAIS</p>
+      <h2 class="section-title">Por que contratar?</h2>
+      <p class="section-sub">Cada evento merece uma experiência sonora à altura do momento.</p>
+    </div>
+    <div class="col-12 col-lg-7" data-aos="fade-left">
+      <div class="diff-item"><i class="fa-solid fa-volume-high diff-icon"></i><span>Som profissional</span></div>
+      <div class="diff-item"><i class="fa-solid fa-lightbulb diff-icon"></i><span>Iluminação de alta qualidade</span></div>
+      <div class="diff-item"><i class="fa-solid fa-list-music diff-icon"></i><span>Repertório personalizado</span></div>
+      <div class="diff-item"><i class="fa-solid fa-champagne-glasses diff-icon"></i><span>Experiência em diversos tipos de eventos</span></div>
+      <div class="diff-item"><i class="fa-solid fa-clock diff-icon"></i><span>Pontualidade e profissionalismo</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="text-center mb-4" data-aos="fade-up">
+    <p class="eyebrow mb-2">GALERIA</p>
+    <h2 class="section-title">Fotos e vídeos de apresentações</h2>
+  </div>
+  <div class="row g-3">
+    <div class="col-6 col-md-3" data-aos="fade-up"><div class="gallery-item"><i class="fa-solid fa-image"></i></div></div>
+    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100"><div class="gallery-item"><i class="fa-solid fa-image"></i></div></div>
+    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200"><div class="gallery-item"><i class="fa-solid fa-play"></i></div></div>
+    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300"><div class="gallery-item"><i class="fa-solid fa-image"></i></div></div>
+  </div>
+  <p class="text-center section-sub mx-auto mt-3" style="font-size:0.85rem;">* Espaços reservados — envie suas fotos/vídeos reais para eu inserir aqui.</p>
+</section>
+
+<section class="container py-5">
+  <div class="text-center mb-4" data-aos="fade-up">
+    <p class="eyebrow mb-2">DEPOIMENTOS</p>
+    <h2 class="section-title">O que dizem sobre o show</h2>
+  </div>
+  <div class="row g-4">
+    <div class="col-12 col-md-4" data-aos="fade-up">
+      <div class="testimonial-card">
+        <i class="fa-solid fa-quote-left"></i>
+        <div class="stars">★★★★★</div>
+        <p>A festa ficou incrível, o repertório combinou perfeitamente com o clima do evento.</p>
+        <div class="testimonial-name">Cliente</div>
+        <div class="testimonial-role">Casamento</div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="testimonial-card">
+        <i class="fa-solid fa-quote-left"></i>
+        <div class="stars">★★★★★</div>
+        <p>Pontualidade e profissionalismo do início ao fim. Recomendo demais.</p>
+        <div class="testimonial-name">Cliente</div>
+        <div class="testimonial-role">Aniversário</div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="testimonial-card">
+        <i class="fa-solid fa-quote-left"></i>
+        <div class="stars">★★★★★</div>
+        <p>Som e iluminação impecáveis, a pista não parou a noite toda.</p>
+        <div class="testimonial-name">Cliente</div>
+        <div class="testimonial-role">Formatura</div>
+      </div>
+    </div>
+  </div>
+  <p class="text-center section-sub mx-auto mt-3" style="font-size:0.85rem;">* Depoimentos de exemplo — envie avaliações reais de clientes para substituir.</p>
+</section>
+
+<section class="cta-final" data-aos="fade-up">
+  <h2>Vamos fazer sua festa acontecer? Entre em contato agora!</h2>
+  <a href="https://wa.me/5519992443057" target="_blank" class="btn-neon">💬 Falar no WhatsApp</a>
+</section>
+
+<footer>
+  <div class="footer-name">Lucas Vinicius</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/viniciusr4sta_?igsh=MW1obGI5N2dqMDQydw==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://wa.me/5519992443057" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+  © 2026 Lucas Vinicius — Todos os direitos reservados.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script> AOS.init({ once:true, easing:'ease-out-cubic' }); </script>
+</body>
+</html>
